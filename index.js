@@ -26,7 +26,8 @@ mongoose
 
 
 app.get("/upload/images/:image" , async(req,res)=>{
-  const image = req.image
+  const image = req.params.image;
+  console.log(image);
   fs.readFile(`./upload/images/${image}` , (error,data)=>{
         if(error){
           res.json({
@@ -38,6 +39,9 @@ app.get("/upload/images/:image" , async(req,res)=>{
   })
 
 })
+
+
+
 const storage = multer.diskStorage({
   destination: "./upload/images",
   filename: (req, file, cb) => {
